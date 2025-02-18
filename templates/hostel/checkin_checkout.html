@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CheckIn and CheckOut</title>
+</head>
+<body>
+    {% extends 'hostel/base.html' %}
+
+{% block content %}
+    <h1 style="text-align: center; color: #2c3e50;">CheckIn and CheckOut</h1>
+    <div class="form-container">
+        <div class="form-column">
+            <!-- CheckIn Form -->
+            <h2 style="text-align: center;">CheckIn</h2>
+            <form method="post" action="{% url 'checkin' %}" onsubmit="showCheckInMessage(event)">
+                {% csrf_token %}
+                <label for="checkin_name">Name:</label>
+                <input type="text" id="checkin_name" name="checkin_name" required>
+
+                <label for="checkin_room_no">Room No.:</label>
+                <input type="text" id="checkin_room_no" name="checkin_room_no" required>
+
+                <label for="checkin_time">In-Time (HH:MM AM/PM):</label>
+                <input type="text" id="checkin_time" name="checkin_time" required pattern="^(1[0-2]|0?[1-9]):[0-5][0-9] (AM|PM)$" title="Enter time in HH:MM AM/PM format">
+
+                <div class="button-container">
+                    <button type="submit">CheckIn</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-column">
+            <!-- CheckOut Form -->
+            <h2 style="text-align: center;">CheckOut</h2>
+            <form method="post" action="{% url 'checkout' %}" onsubmit="showCheckOutMessage(event)">
+                {% csrf_token %}
+                <label for="checkout_name">Name:</label>
+                <input type="text" id="checkout_name" name="checkout_name" required>
+
+                <label for="checkout_room_no">Room No.:</label>
+                <input type="text" id="checkout_room_no" name="checkout_room_no" required>
+
+                <label for="checkout_purpose">Purpose:</label>
+                <input type="text" id="checkout_purpose" name="checkout_purpose" required>
+
+                <label for="checkout_time">Out-Time (HH:MM AM/PM):</label>
+                <input type="text" id="checkout_time" name="checkout_time" required pattern="^(1[0-2]|0?[1-9]):[0-5][0-9] (AM|PM)$" title="Enter time in HH:MM AM/PM format">
+
+                <div class="button-container">
+                    <button type="submit">CheckOut</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="back-button">
+        <a href="{% url 'admin_dashboard' %}"><button>Back</button></a>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+
+    <style>
+        .form-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-column {
+            width: 48%;
+        }
+
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            background-color: #3498db;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #2980b9;
+        }
+
+        .back-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-button button {
+            background-color: #2c3e50;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button button:hover {
+            background-color: #1a252f;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        // Function to show CheckIn success message
+        function showCheckInMessage(event) {
+            event.preventDefault(); // Prevent form submission for demonstration
+            const modal = document.getElementById("successModal");
+            const modalMessage = document.getElementById("modalMessage");
+
+            modalMessage.textContent = "Person is Checked In!";
+            modal.style.display = "block";
+
+            // Close modal and submit the form
+            const closeBtn = document.querySelector(".close");
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+                event.target.submit(); // Submit the form after closing the modal
+            };
+
+            // Close modal when the user clicks outside the modal
+            window.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                    event.target.submit(); // Submit the form after closing the modal
+                }
+            };
+        }
+
+        // Function to show CheckOut success message
+        function showCheckOutMessage(event) {
+            event.preventDefault(); // Prevent form submission for demonstration
+            const modal = document.getElementById("successModal");
+            const modalMessage = document.getElementById("modalMessage");
+
+            modalMessage.textContent = "Person is Checked Out!";
+            modal.style.display = "block";
+
+            // Close modal and submit the form
+            const closeBtn = document.querySelector(".close");
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+                event.target.submit(); // Submit the form after closing the modal
+            };
+
+            // Close modal when the user clicks outside the modal
+            window.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                    event.target.submit(); // Submit the form after closing the modal
+                }
+            };
+        }
+    </script>
+{% endblock %}
+</body>
+</html>

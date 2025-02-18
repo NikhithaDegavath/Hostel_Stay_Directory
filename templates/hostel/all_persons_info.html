@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+    {% extends 'hostel/base.html' %}
+
+    {% block content %}
+    <h1 style="text-align: center; color: #2c3e50;">Information of All Persons</h1>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Contact No.</th>
+                    <th>Room No.</th>
+                    <th>Workplace/College</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for person in persons %}
+                <tr>
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.contact }}</td>
+                    <td>{{ person.room_no }}</td>
+                    <td>{{ person.work_place_college }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Back Button -->
+    <div class="back-button">
+        <a href="{% url 'view_info' %}"><button>Back</button></a>
+    </div>
+    {% endblock %}
+</body>
+</html>

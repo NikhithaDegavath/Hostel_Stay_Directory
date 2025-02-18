@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>HOSTEL STAY DIRECTORY</head>
+<body>
+    {% extends 'hostel/base.html' %}
+
+    {% block content %}
+    <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Hostel Image" class="hostel-image">
+        <h1 style="text-align: center;">Welcome to {{ hostel_name }} Hostel</h1>
+        <div class="button-container">
+            <a href="{% url 'admin_login' %}"><button>Admin</button></a>
+            <a href="{% url 'user_login' %}"><button>User</button></a>
+            <a href="{% url 'start' %}"><button>Back</button></a>
+        </div>
+    {% endblock %}
+    
+</body>
+</html>

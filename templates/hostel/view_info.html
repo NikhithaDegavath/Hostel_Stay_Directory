@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>View Information</title>
+    </head>
+<body>
+    {% extends 'hostel/base.html' %}
+
+{% block content %}
+    <h1 style="text-align: center; color: #2c3e50;">View Information</h1>
+    <div class="button-container">
+        <a href="{% url 'all_persons_info' %}"><button>Information of All Persons</button></a>
+        <a href="{% url 'room_info' %}"><button>Room Information</button></a>
+    </div>
+
+    <!-- Back Button -->
+    <div class="back-button">
+        <a href="{% url 'admin_dashboard' %}"><button>Back</button></a>
+    </div>
+
+    <style>
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            background-color: #3498db;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .button-container button:hover {
+            background-color: #2980b9;
+        }
+
+        .back-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-button button {
+            background-color: #2c3e50;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button button:hover {
+            background-color: #1a252f;
+        }
+    </style>
+{% endblock %}
+</body>
+</html>
