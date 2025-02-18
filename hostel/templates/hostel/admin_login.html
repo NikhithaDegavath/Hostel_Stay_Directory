@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>Admin Login</head>
+<body>
+    {% extends 'hostel/base.html' %}
+
+    {% block content %}
+        <h1 style="text-align: center;">Admin Login</h1>
+        <div class="form-container">
+            <form method="post">
+                {% csrf_token %}
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Login</button>
+            </form>
+            {% if error %}
+                <p style="color: red; text-align: center;">{{ error }}</p>
+            {% endif %}
+        </div>
+        <div class="back-button">
+            <a href="{% url 'home' %}"><button>Back</button></a>
+        </div>
+    {% endblock %}
+</body>
+</html>

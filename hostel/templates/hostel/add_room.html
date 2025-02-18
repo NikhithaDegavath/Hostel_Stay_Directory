@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Room</title>
+</head>
+<body>
+    {% extends 'hostel/base.html' %}
+
+{% block content %}
+    <h1 style="text-align: center; color: #2c3e50;">Add New Room</h1>
+    <div class="form-container">
+        <form method="post" onsubmit="return validateRoom()">
+            {% csrf_token %}
+            <label for="room_no">Room No.:</label>
+            <input type="text" id="room_no" name="room_no" required>
+
+            <label for="no_of_beds">Number of Beds:</label>
+            <input type="number" id="no_of_beds" name="no_of_beds" min="1" required>
+
+            <div class="button-container">
+                <button type="submit">Add Room</button>
+                <a href="{% url 'admin_dashboard' %}"><button type="button">Back</button></a>
+            </div>
+
+            <!-- Display error message in red -->
+            {% if error %}
+                <p style="color: red; text-align: center; margin-top: 10px;">{{ error }}</p>
+            {% endif %}
+        </form>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            background-color: #3498db;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .button-container button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        // Function to validate room and show modal
+        function validateRoom() {
+            const room_no = document.getElementById("room_no").value;
+            const modal = document.getElementById("successModal");
+            const modalMessage = document.getElementById("modalMessage");
+
+            // Check if room already exists (dummy check for demonstration)
+            const rooms = ["101", "102"]; // Replace with actual room data from the backend
+            if (rooms.includes(room_no)) {
+                modalMessage.textContent = "Room already exists!";
+                modal.style.display = "block";
+                return false; // Prevent form submission
+            } else {
+                modalMessage.textContent = "Room added successfully!";
+                modal.style.display = "block";
+                return true; // Allow form submission
+            }
+
+            // Close modal when the user clicks the close button
+            const closeBtn = document.querySelector(".close");
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            };
+
+            // Close modal when the user clicks outside the modal
+            window.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            };
+        }
+    </script>
+{% endblock %}
+</body>
+</html>

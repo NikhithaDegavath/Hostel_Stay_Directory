@@ -1,0 +1,6 @@
+First Name: Alekhya, Last Name: Daram, Father Name: Balajoji, Mother Name: Bhavani, DOB: 2003-10-24, Contact: 9876123450, Email: adealekhya@gmail.com, Address: Fathenagar, Work Place/College: None, Gender: female, Room No.: 105
+First Name: Navya, Last Name: Basi, Father Name: Gangaram, Mother Name: premala, DOB: 2002-10-16, Contact: 6789054321, Email: navya@gmail.com, Address: Nemli, Work Place/College: None, Gender: female, Room No.: 105
+First Name: Vaishnavi, Last Name: Ande, Father Name: Srinivas, Mother Name: Latha, DOB: 2003-10-15, Contact: 9087654321, Email: vaishnavi@gmail.com, Address: Kompally, Work Place/College: None, Gender: female, Room No.: 105
+First Name: Nikhitha, Last Name: Degavath, Father Name: Mojiram, Mother Name: Jamuna, DOB: 2004-05-12, Contact: 7036226350, Email: nikhitha@gmail.com, Address: Nizamabad, Work Place/College: Amazon, Gender: female, Room No.: 105
+First Name: Nikhitha, Last Name: Degavath, Father Name: Mojiram, Mother Name: Jamuna, DOB: 2004-05-12, Contact: 7036226350, Email: nikhitha@gmail.com, Address: Nizamabad, Work Place/College: Amazon, Gender: female, Room No.: 105
+First Name: Manasa, Last Name: Bandari, Father Name: Srinivas, Mother Name: Bhagya, DOB: 2004-07-29, Contact: 6789054321, Email: manasa@gmail.com, Address: Siricilla, Work Place/College: Visa, Gender: female, Room No.: 106

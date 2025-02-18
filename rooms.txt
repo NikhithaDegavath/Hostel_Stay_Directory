@@ -1,0 +1,4 @@
+Room No.: 105, Number of Beds: 4
+Room No.: 104, Number of Beds: 4
+Room No.: 106, Number of Beds: 4
+Room No.: 106, Number of Beds: 4
